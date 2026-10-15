@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Amala Florist | Jl. Gurubug No 90</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+body{font-family:'Poppins',sans-serif}
+.page-section{display:none}
+.page-section.active{display:block}
+</style>
+</head>
+<body class="bg-rose-50 text-gray-800">
+<nav class="bg-white sticky top-0 z-50 shadow border-b">
+<div class="max-w-7xl mx-auto px-4 flex justify-between h-20 items-center">
+<h1 onclick="showSection('beranda')" class="font-bold text-2xl text-rose-900 cursor-pointer">L'Amala Florist</h1>
+<div class="hidden md:flex gap-6">
+<button type="button" onclick="showSection('beranda')">Beranda</button>
+<button type="button" onclick="showSection('katalog')">Katalog</button>
+<button type="button" onclick="showSection('lokasi')">Lokasi Toko</button>
+</div>
+<div class="flex gap-3">
+<button type="button" onclick="showSection('keranjang')" class="relative"><i class="fa-solid fa-bag-shopping text-2xl"></i><span id="cart-count" class="absolute -top-2 -right-2 bg-rose-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span></button>
+<button type="button" onclick="toggleMobileMenu()" class="md:hidden text-2xl"><i class="fa-solid fa-bars"></i></button>
+</div>
+</div>
+<div id="mobile-menu" class="hidden px-4 pb-3">
+<button type="button" onclick="showSection('beranda');toggleMobileMenu()" class="block py-2 w-full text-left">Beranda</button>
+<button type="button" onclick="showSection('katalog');toggleMobileMenu()" class="block py-2 w-full text-left">Katalog</button>
+<button type="button" onclick="showSection('lokasi');toggleMobileMenu()" class="block py-2 w-full text-left">Lokasi Toko</button>
+</div>
+</nav>
+<main>
+<section id="beranda" class="page-section active">
+<div class="text-center py-16 bg-rose-100 px-4">
+<span class="bg-rose-200 text-rose-800 text-xs px-4 py-1 rounded-full">Kab. Tangerang - Same Day</span>
+<h2 class="text-4xl font-bold mt-4">Bunga Segar, Buket Uang, Snack & Wisuda</h2>
+<p class="mt-4 text-gray-600">Jl. Gurubug No 90, Kabupaten Tangerang</p>
+<div class="mt-6 flex justify-center gap-3">
+<button type="button" onclick="showSection('katalog')" class="bg-rose-600 text-white px-8 py-3 rounded-full">Belanja Katalog</button>
+<button type="button" onclick="openRequestModal()" class="bg-white border border-rose-300 text-rose-600 px-8 py-3 rounded-full">Request WA</button>
+</div>
+</div>
+</section>
+  <section id="katalog" class="page-section">
+<div class="max-w-7xl mx-auto px-4 py-10">
+<h2 class="text-3xl font-bold text-center">Katalog Buket L'Amala</h2>
+<div class="bg-rose-500 text-white rounded-2xl p-6 my-6 flex justify-between items-center">
+<div><h3 class="font-bold">Punya Referensi Buket Sendiri?</h3><p class="text-sm text-rose-100">Request custom via WA</p></div>
+<button type="button" onclick="openRequestModal()" class="bg-white text-rose-600 px-5 py-2 rounded-xl">Request WA</button>
+</div>
+<div class="flex flex-wrap justify-center gap-2 mb-6">
+<button type="button" onclick="filterCategory('all')" data-cat="all" class="cat-btn bg-rose-600 text-white px-4 py-2 rounded-full text-sm">Semua</button>
+<button type="button" onclick="filterCategory('segar')" data-cat="segar" class="cat-btn bg-white border px-4 py-2 rounded-full text-sm">Bunga Segar</button>
+<button type="button" onclick="filterCategory('uang')" data-cat="uang" class="cat-btn bg-white border px-4 py-2 rounded-full text-sm">Buket Uang</button>
+<button type="button" onclick="filterCategory('snack')" data-cat="snack" class="cat-btn bg-white border px-4 py-2 rounded-full text-sm">Snack</button>
+<button type="button" onclick="filterCategory('wisuda')" data-cat="wisuda" class="cat-btn bg-white border px-4 py-2 rounded-full text-sm">Wisuda</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="product-grid"></div>
+</div>
+</section>
+
+<section id="lokasi" class="page-section">
+<div class="max-w-6xl mx-auto px-4 py-12">
+<h2 class="text-3xl font-bold text-center mb-10">Lokasi Galeri Toko</h2>
+<div class="grid lg:grid-cols-2 gap-8 bg-white p-6 rounded-2xl border">
+<div class="space-y-6">
+<div class="flex gap-3"><div class="bg-rose-100 p-3 rounded-lg"><i class="fa-solid fa-location-dot text-rose-600"></i></div><div><h4 class="font-bold">Alamat Galeri - BARU</h4><p class="text-sm font-semibold">Jl. Gurubug No 90, Kabupaten Tangerang, Banten 15510</p><a href="https://maps.app.goo.gl/fx3NzcgmuyJTrcnU9?g_st=aw" target="_blank" class="mt-2 inline-block bg-rose-600 text-white text-xs px-4 py-2 rounded-full">Buka Maps Asli Kamu</a></div></div>
+<div class="flex gap-3"><div class="bg-rose-100 p-3 rounded-lg"><i class="fa-solid fa-clock text-rose-600"></i></div><div><h4 class="font-bold">Jam Buka</h4><p class="text-sm">Senin-Minggu 08:00-21:00 WIB</p></div></div>
+<div class="flex gap-3"><div class="bg-rose-100 p-3 rounded-lg"><i class="fa-brands fa-whatsapp text-rose-600"></i></div><div><h4 class="font-bold">WA Admin</h4><p class="text-sm">+62 838-7590-5994</p></div></div>
+</div>
+<div>
+<div class="w-full h-80 rounded-xl overflow-hidden border"><iframe src="https://www.google.com/maps?q=Jl.+Gurubug+No+90+Kabupaten+Tangerang&z=17&output=embed" width="100%" height="100%" style="border:0"></iframe></div>
+<a href="https://maps.app.goo.gl/fx3NzcgmuyJTrcnU9?g_st=aw" target="_blank" class="block text-center bg-rose-600 text-white py-3 rounded-xl mt-3 text-sm font-semibold">Buka di Google Maps - Link Asli</a>
+</div>
+</div>
+</div>
+</section>
+
+<section id="keranjang" class="page-section">
+<div class="max-w-5xl mx-auto px-4 py-10">
+<h2 class="text-2xl font-bold border-b pb-4">Checkout - Jl. Gurubug No 90</h2>
+<div class="grid lg:grid-cols-2 gap-8 mt-6">
+<div>
+<h3 class="font-bold mb-3 flex justify-between"><span>Keranjang</span><button type="button" onclick="clearCart()" class="text-xs text-rose-500">Kosongkan</button></h3>
+<div id="cart-items-container"></div>
+<div id="empty-cart" class="text-center py-10 text-gray-400 text-sm">Keranjang kosong</div>
+<textarea id="greeting-card" rows="2" placeholder="Kartu ucapan..." class="w-full border rounded-lg mt-4 p-2 text-xs"></textarea>
+</div>
+<div class="bg-white p-5 border rounded-xl">
+<h3 class="font-bold border-b pb-2">Info Pengiriman - Kab. Tangerang</h3>
+<div class="space-y-3 mt-3 text-xs">
+<input id="buyer-name" placeholder="Nama Pemesan *" class="w-full border p-2 rounded-lg">
+<input id="buyer-phone" placeholder="No HP WA *" class="w-full border p-2 rounded-lg">
+<select id="shipping-method" onchange="updateCartTotal()" class="w-full border p-2 rounded-lg"><option value="kurir">Kurir Kab Tangerang (+15rb)</option><option value="pickup">Ambil di Jl Gurubug 90 (Gratis)</option></select>
+<textarea id="buyer-address" rows="2" placeholder="Alamat lengkap *" class="w-full border p-2 rounded-lg"></textarea>
+<select id="payment-method" class="w-full border p-2 rounded-lg"><option>Transfer / QRIS</option><option>COD</option></select>
+</div>
+<div class="border-t mt-4 pt-3 text-xs space-y-1">
+<div class="flex justify-between"><span>Subtotal</span><span id="subtotal-price">Rp 0</span></div>
+<div class="flex justify-between"><span>Ongkir</span><span id="shipping-price">Rp 0</span></div>
+<div class="flex justify-between font-bold text-base border-t pt-2"><span>Total</span><span id="total-price" class="text-rose-600">Rp 0</span></div>
+</div>
+<button type="button" onclick="checkoutWA()" class="w-full bg-rose-600 text-white py-3 rounded-xl mt-4 font-semibold">Checkout via WhatsApp</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="text-center py-6 text-xs text-gray-500 border-t">© 2026 L'Amala Florist - Jl. Gurubug No 90, Kab. Tangerang</footer>
+  <script>
+let cart=[];let currentCat='all';
+const products=[
+{id:1,name:"Mawar Merah Segar",cat:"segar",price:150000,img:"https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500",desc:"Segar same-day"},
+{id:2,name:"Buket Uang 500rb",cat:"uang",price:600000,img:"https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=500",desc:"Uang asli"},
+{id:3,name:"Buket Snack",cat:"snack",price:125000,img:"https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=500",desc:"Snack mix"},
+{id:4,name:"Buket Wisuda",cat:"wisuda",price:175000,img:"https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500",desc:"Boneka wisuda"}
+];
+function showSection(id){document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);if(id==='keranjang')renderCart();}
+function toggleMobileMenu(){document.getElementById('mobile-menu').classList.toggle('hidden');}
+function filterCategory(cat){currentCat=cat;document.querySelectorAll('.cat-btn').forEach(b=>{b.className=b.dataset.cat===cat?"cat-btn bg-rose-600 text-white px-4 py-2 rounded-full text-sm":"cat-btn bg-white border px-4 py-2 rounded-full text-sm";});renderProducts();}
+function renderProducts(){const grid=document.getElementById('product-grid');grid.innerHTML='';const f=currentCat==='all'?products:products.filter(p=>p.cat===currentCat);f.forEach(p=>{grid.innerHTML+=`<div class="bg-white border rounded-2xl overflow-hidden"><img src="${p.img}" class="w-full h-56 object-cover"><div class="p-4"><span class="text-[10px] bg-rose-100 px-2 py-1 rounded-full">${p.cat}</span><h3 class="font-bold text-sm mt-2">${p.name}</h3><p class="text-xs text-gray-500">${p.desc}</p><div class="flex justify-between items-center mt-3"><span class="font-bold text-rose-600 text-sm">Rp ${p.price.toLocaleString('id-ID')}</span><button type="button" onclick="addToCart(${p.id})" class="bg-rose-600 text-white text-xs px-3 py-2 rounded-full">+ Keranjang</button></div></div></div>`;});}
+function addToCart(id){const pr=products.find(p=>p.id===id);const ex=cart.find(c=>c.id===id);if(ex)ex.qty++;else cart.push({...pr,qty:1});document.getElementById('cart-count').innerText=cart.reduce((a,b)=>a+b.qty,0);showSection('keranjang');}
+function renderCart(){const con=document.getElementById('cart-items-container');const emp=document.getElementById('empty-cart');con.innerHTML='';if(cart.length===0){emp.style.display='block';updateCartTotal();return;}emp.style.display='none';cart.forEach((it,i)=>{con.innerHTML+=`<div class="flex gap-2 border p-2 rounded-lg mb-2"><img src="${it.img}" class="w-12 h-12 rounded"><div class="flex-1"><p class="text-xs font-bold">${it.name}</p><p class="text-[11px]">Rp ${it.price.toLocaleString('id-ID')} x ${it.qty}</p></div><div class="flex gap-1 items-center"><button type="button" onclick="changeQty(${i},-1)" class="w-6 h-6 bg-gray-100 rounded-full">-</button><span class="text-xs">${it.qty}</span><button type="button" onclick="changeQty(${i},1)" class="w-6 h-6 bg-gray-100 rounded-full">+</button></div><button type="button" onclick="removeItem(${i})" class="text-xs text-rose-500"><i class="fa-solid fa-trash"></i></button></div>`;});updateCartTotal();}
+function changeQty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);document.getElementById('cart-count').innerText=cart.reduce((a,b)=>a+b.qty,0);renderCart();}
+function removeItem(i){cart.splice(i,1);document.getElementById('cart-count').innerText=cart.reduce((a,b)=>a+b.qty,0);renderCart();}
+function clearCart(){cart=[];document.getElementById('cart-count').innerText='0';renderCart();}
+function updateCartTotal(){const sub=cart.reduce((a,b)=>a+b.price*b.qty,0);const ship=document.getElementById('shipping-method').value;const ong=ship==='pickup'?0:(sub===0?0:15000);document.getElementById('subtotal-price').innerText='Rp '+sub.toLocaleString('id-ID');document.getElementById('shipping-price').innerText='Rp '+ong.toLocaleString('id-ID');document.getElementById('total-price').innerText='Rp '+(sub+ong).toLocaleString('id-ID');}
+function openRequestModal(){window.open('https://wa.me/6283875905994?text=Halo%20LAmala%20Jl%20Gurubug%2090%20mau%20request','_blank');}
+function checkoutWA(){const n=document.getElementById('buyer-name').value;const p=document.getElementById('buyer-phone').value;const a=document.getElementById('buyer-address').value;if(!n||!p||!a){alert('Lengkapi Nama HP Alamat');return;}if(cart.length===0){alert('Keranjang kosong');return;}let msg=`Halo L'Amala Jl Gurubug 90 Kab Tangerang!%0APesanan:%0A`;cart.forEach(c=>{msg+=`- ${c.name} x${c.qty}%0A`;});const sub=cart.reduce((a,b)=>a+b.price*b.qty,0);const ong=document.getElementById('shipping-method').value==='pickup'?0:15000;msg+=`Total Rp ${(sub+ong).toLocaleString('id-ID')}%0ANama ${n}%0AHP ${p}%0AAlamat ${a}%0AMaps https://maps.app.goo.gl/fx3NzcgmuyJTrcnU9?g_st=aw`;window.open('https://wa.me/6283875905994?text='+msg,'_blank');}
+renderProducts();updateCartTotal();
+</script>
+</body>
+</html>
